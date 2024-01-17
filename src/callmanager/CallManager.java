@@ -1,2 +1,4 @@
-package callmanager;public class CallManager {
+package callmanager;
+
+public class CallManager {
 }
