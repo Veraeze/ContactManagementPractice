@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="187d5090-fb6c-42e3-b018-a90bf6155882" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ContactManagementPractice.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/callmanager/CallManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/callmanager/Contact.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/callmanager/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/callmanager/exceptions/CannotBeFound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/callmanager/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/callmanager/exceptions/ContactAlreadyExists.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/callmanager/exceptions/WrongDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/callmanager/CallManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/callmanager/CallManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callmanager/CallManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/callmanager/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callmanager/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/callmanager/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/callmanager/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -46,10 +44,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CallManagerTest.userCanRegisterUserMoreThanOneUser.executor": "Run",
     "JUnit.UserTest.executor": "Run",
     "JUnit.UserTest.testUserCanAddNewMoreThanOneContact.executor": "Run",
     "JUnit.UserTest.testUserCanDeleteContact.executor": "Run",
     "JUnit.UserTest.testUserCanEditContact.executor": "Run",
+    "JUnit.UserTest.testUserCanSearchForContact.executor": "Run",
+    "JUnit.UserTest.throwsException_UserTriesToAddTheSameContactTwice.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -58,9 +59,10 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/Dell/Desktop/Logistics Sysem/ContactManagementPractice/src/callmanager",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,7 +87,39 @@
       <recent name="callmanager" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserTest.testUserCanSearchForContact">
+  <component name="RunManager" selected="JUnit.CallManagerTest.userCanLogin">
+    <configuration name="CallManagerTest.userCanLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ContactManagementPractice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="callmanager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="callmanager" />
+      <option name="MAIN_CLASS_NAME" value="callmanager.CallManagerTest" />
+      <option name="METHOD_NAME" value="userCanLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CallManagerTest.userCanRegisterUserMoreThanOneUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ContactManagementPractice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="callmanager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="callmanager" />
+      <option name="MAIN_CLASS_NAME" value="callmanager.CallManagerTest" />
+      <option name="METHOD_NAME" value="userCanRegisterUserMoreThanOneUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ContactManagementPractice" />
       <extension name="coverage">
@@ -101,59 +135,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest.testUserCanAddNewMoreThanOneContact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ContactManagementPractice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="callmanager.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="callmanager" />
-      <option name="MAIN_CLASS_NAME" value="callmanager.UserTest" />
-      <option name="METHOD_NAME" value="testUserCanAddNewMoreThanOneContact" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.testUserCanDeleteContact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ContactManagementPractice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="callmanager.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="callmanager" />
-      <option name="MAIN_CLASS_NAME" value="callmanager.UserTest" />
-      <option name="METHOD_NAME" value="testUserCanDeleteContact" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTest.testUserCanEditContact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ContactManagementPractice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="callmanager.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="callmanager" />
-      <option name="MAIN_CLASS_NAME" value="callmanager.UserTest" />
-      <option name="METHOD_NAME" value="testUserCanEditContact" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UserTest.testUserCanSearchForContact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ContactManagementPractice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="callmanager.*" />
+          <option name="PATTERN" value="callmanager.User" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -165,13 +151,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest.throwsException_UserTriesToAddTheSameContactTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ContactManagementPractice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="callmanager.User" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="callmanager" />
+      <option name="MAIN_CLASS_NAME" value="callmanager.UserTest" />
+      <option name="METHOD_NAME" value="throwsException_UserTriesToAddTheSameContactTwice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserTest.testUserCanSearchForContact" />
-        <item itemvalue="JUnit.UserTest.testUserCanDeleteContact" />
-        <item itemvalue="JUnit.UserTest.testUserCanEditContact" />
-        <item itemvalue="JUnit.UserTest.testUserCanAddNewMoreThanOneContact" />
+        <item itemvalue="JUnit.CallManagerTest.userCanLogin" />
+        <item itemvalue="JUnit.CallManagerTest.userCanRegisterUserMoreThanOneUser" />
         <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.throwsException_UserTriesToAddTheSameContactTwice" />
+        <item itemvalue="JUnit.UserTest.testUserCanSearchForContact" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705514835592</updated>
       <workItem from="1705514836515" duration="7763000" />
-      <workItem from="1705523576245" duration="702000" />
+      <workItem from="1705523576245" duration="9563000" />
     </task>
     <servers />
   </component>

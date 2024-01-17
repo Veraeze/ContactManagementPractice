@@ -40,6 +40,9 @@ public class Contact {
     public String getID() {
         return id;
     }
+    public String call(String phoneNumber, String firstName, String lastName){
+        return firstName + " " + lastName;
+    }
 
     public String toString() {
         return String.format("""

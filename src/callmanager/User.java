@@ -1,18 +1,38 @@
 package callmanager;
 
 import callmanager.exceptions.CannotBeFound;
+import callmanager.exceptions.ContactAlreadyExists;
 
 import java.util.ArrayList;
 
 public class User {
     private String location;
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
     private String mobileNumber;
     private String firstName;
     private String lastName;
+    private boolean isLoggedIn;
+    private String password;
     private String email;
     private int numberOfContacts;
     ArrayList<Contact> contacts;
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public User(String location, String mobileNumber, String firstName, String lastName, String email){
         this.location = location;
@@ -27,6 +47,7 @@ public class User {
         numberOfContacts++;
         Contact newContact = new Contact(generateID(), firstName + " ", lastName, phoneNumber);
         contacts.add(newContact);
+
         return newContact;
     }
     public String generateID() {
@@ -59,4 +80,23 @@ public class User {
         return contacts.size();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+    public String call(String firstName, String lastName, String mobile){
+        Contact contact = searchContactBy(mobile);
+        return contact.call(mobile, firstName, lastName);
+    }
 }

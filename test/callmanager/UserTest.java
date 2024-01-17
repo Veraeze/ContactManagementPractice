@@ -1,26 +1,37 @@
 package callmanager;
 
+import callmanager.exceptions.ContactAlreadyExists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-    User user;
-    @BeforeEach
-    void setUser(){
-        user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
-    }
 
     @Test
     void testUserCanAddNewContact(){
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
         user.addContact("0801", "susan", "eze");
+
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
     }
 
+//    @Test
+//    void throwsException_UserTriesToAddTheSameContactTwice(){
+//        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+//
+//        user.addContact("0801", "susan", "eze");
+//
+//        assertThrows(ContactAlreadyExists.class, ()->user.addContact("0801", "susan", "eze"));
+//    }
+
+
     @Test
     void testUserCanAddNewMoreThanOneContact(){
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
         user.addContact("0801", "susan", "eze");
         user.addContact("0802", "cynthia", "eze");
         user.addContact("0803", "helen", "eze");
@@ -30,6 +41,8 @@ class UserTest {
 
     @Test
     void testUserCanEditContact(){
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
         user.addContact("0801", "susan", "eze");
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
@@ -41,7 +54,20 @@ class UserTest {
     }
 
     @Test
+    void throwsException_UserTriesToEditContactWithWrong() {
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
+        user.addContact("0801", "susan", "eze");
+        assertEquals(1, user.getNumberOfContacts());
+        assertEquals("CM1", user.generateID());
+
+        user.editContact("0801", "helen", "okafor");
+    }
+
+    @Test
     void testUserCanDeleteContact() {
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
         user.addContact("0801", "susan", "eze");
         user.addContact("0802", "cynthia", "eze");
         user.addContact("0803", "helen", "eze");
@@ -54,6 +80,8 @@ class UserTest {
 
     @Test
     void testUserCanSearchForContact() {
+        User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
+
         Contact susan = user.addContact("0801", "susan", "eze");
         Contact cynthia = user.addContact("0802", "cynthia", "eze");
         Contact helen = user.addContact("0803", "helen", "eze");
