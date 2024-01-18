@@ -36,10 +36,9 @@ public class CallManager {
 
     }
 
-    public User findUser(String phoneNumber){
-        validateCall();
+    public User findUser(Contact contact){
         for (User user : users) {
-            if (user.searchContactBy(phoneNumber) != null) return user;
+            if (user.searchContactBy(contact.getPhoneNumber()) != null) return user;
         }
         throw new UnknownCaller("No available information on this caller");
     }

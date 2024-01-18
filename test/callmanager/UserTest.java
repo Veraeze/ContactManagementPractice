@@ -1,10 +1,8 @@
 package callmanager;
 
-import callmanager.exceptions.ContactAlreadyExists;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
 
@@ -12,7 +10,7 @@ class UserTest {
     void testUserCanAddNewContact(){
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        user.addContact("0801", "susan", "eze");
+        user.addContact(new Contact("CM1", "fname ", "lname", "phone1"));
 
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
@@ -32,9 +30,9 @@ class UserTest {
     void testUserCanAddNewMoreThanOneContact(){
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        user.addContact("0801", "susan", "eze");
-        user.addContact("0802", "cynthia", "eze");
-        user.addContact("0803", "helen", "eze");
+        user.addContact(new Contact("CM1", "fname ", "lname", "phone1"));
+        user.addContact(new Contact("CM2", "fname ", "lname", "phone2"));
+        user.addContact(new Contact("CM3", "fname ", "lname", "phone3"));
 
         assertEquals(3, user.getNumberOfContacts());
     }
@@ -43,11 +41,13 @@ class UserTest {
     void testUserCanEditContact(){
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        user.addContact("0801", "susan", "eze");
+        Contact contact1 = user.addContact(new Contact("CM1", "fname", "lname", "phone1"));
+
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
 
-        user.editContact("0801", "helen", "okafor");
+        user.editContact(contact1, "0801", "helen", "okafor");
+
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
 
@@ -57,24 +57,25 @@ class UserTest {
     void throwsException_UserTriesToEditContactWithWrong() {
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        user.addContact("0801", "susan", "eze");
+        Contact contact = user.addContact(new Contact("CM1", "fname", "lname", "phone1"));
+
         assertEquals(1, user.getNumberOfContacts());
         assertEquals("CM1", user.generateID());
 
-        user.editContact("0801", "helen", "okafor");
+        user.editContact(contact, "0801", "helen", "okafor");
     }
 
     @Test
     void testUserCanDeleteContact() {
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        user.addContact("0801", "susan", "eze");
-        user.addContact("0802", "cynthia", "eze");
-        user.addContact("0803", "helen", "eze");
+        user.addContact(new Contact("CM1", "fname ", "lname", "phone1"));
+        user.addContact(new Contact("CM2", "fname ", "lname", "phone2"));
+        user.addContact(new Contact("CM3", "fname ", "lname", "phone3"));
 
         assertEquals(3, user.getNumberOfContacts());
 
-        user.deleteContact("0802");
+        user.deleteContact("phone2");
         assertEquals(2, user.getNumberOfContacts());
     }
 
@@ -82,16 +83,14 @@ class UserTest {
     void testUserCanSearchForContact() {
         User user = new User("Nigeria +234", "Vera", "Ezeagu", "0704", "Vera@yahoo.com");
 
-        Contact susan = user.addContact("0801", "susan", "eze");
-        Contact cynthia = user.addContact("0802", "cynthia", "eze");
-        Contact helen = user.addContact("0803", "helen", "eze");
+        Contact contact1 = user.addContact(new Contact("CM1", "fname ", "lname", "phone1"));
+        Contact contact2 = user.addContact(new Contact("CM2", "fname ", "lname", "phone2"));
+        Contact contact3 = user.addContact(new Contact("CM3", "fname ", "lname", "phone3"));
 
-        assertEquals(helen, user.searchContactBy("0803"));
-        assertEquals(susan, user.searchContactBy("0801"));
-        assertEquals(cynthia, user.searchContactBy("0802"));
-
-    }
-
-
+        assertEquals(contact3, user.searchContactBy("phone3"));
+        assertEquals(contact1, user.searchContactBy("phone1"));
+        assertEquals(contact2, user.searchContactBy("phone2"));
 
     }
+
+}

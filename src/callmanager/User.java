@@ -1,7 +1,6 @@
 package callmanager;
 
 import callmanager.exceptions.CannotBeFound;
-import callmanager.exceptions.ContactAlreadyExists;
 
 import java.util.ArrayList;
 
@@ -43,22 +42,22 @@ public class User {
         contacts = new ArrayList<>();
     }
 
-    public Contact addContact(String phoneNumber, String firstName, String lastName){
+    public Contact addContact(Contact contact){
         numberOfContacts++;
-        Contact newContact = new Contact(generateID(), firstName + " ", lastName, phoneNumber);
-        contacts.add(newContact);
+        contact = new Contact(generateID(), contact.getFirstName() , contact.getLastName(), contact.getPhoneNumber());
+        contacts.add(contact);
 
-        return newContact;
+        return contact;
     }
     public String generateID() {
-        return "CM" +numberOfContacts;
+        return "CM" + numberOfContacts;
     }
 
-    public void editContact(String phoneNumber, String firstName, String lastName){
-        Contact existingContact = searchContactBy(phoneNumber);
+    public void editContact(Contact contact, String firstName, String lastName, String phoneNumber){
+        Contact existingContact = searchContactBy(contact.getPhoneNumber());
 
         existingContact.setFirstName(firstName);
-        String editLastname = existingContact.getLastName() + " " + firstName;
+        String editLastname = existingContact.getLastName() + " " + lastName;
         existingContact.setLastName(editLastname);
         String editNumber = existingContact.getPhoneNumber() + " " + phoneNumber;
         existingContact.setPhoneNumber(editNumber);
@@ -95,8 +94,8 @@ public class User {
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
     }
-    public String call(String firstName, String lastName, String mobile){
-        Contact contact = searchContactBy(mobile);
-        return contact.call(mobile, firstName, lastName);
+    public String call(Contact contact){
+        contact = searchContactBy(contact.getPhoneNumber());
+        return contact.call(mobileNumber, firstName, lastName);
     }
 }

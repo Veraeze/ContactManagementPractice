@@ -35,10 +35,16 @@ class CallManagerTest {
     @Test
     void testThatUserContactIsFoundWhenCallComesIn() {
         CallManager callManager = new CallManager();
+         Contact contact = new Contact("CM1", "susan", "eze", "phone");
 
         User user = callManager.register("location", "mobile1", "fname", "lname", "email", "pin");
         callManager.login("email", "pin");
         assertTrue(user.isLoggedIn());
+
+        user.addContact(contact);
+//        user.call(contact);
+        assertEquals(user, callManager.findUser(contact));
+
 
 
     }

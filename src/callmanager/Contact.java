@@ -38,6 +38,7 @@ public class Contact {
     }
 
     public String getID() {
+
         return id;
     }
     public String call(String phoneNumber, String firstName, String lastName){
@@ -51,7 +52,7 @@ public class Contact {
                 full name: %s
                 Phone Number: %s
                 ==========================
-                 """, id, firstName + " " + lastName, phoneNumber);
+                 """, id, firstName + "" + lastName, phoneNumber);
     }
 }
 
